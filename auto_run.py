@@ -5,11 +5,14 @@ import random
 import pandas as pd
 from datetime import datetime, timedelta, timezone
 
-dd = pd.date_range('2019-12-23', '2019-12-25')
+dd = pd.date_range('2019-01-01', '2019-03-31')
 date_list = [pd.Timestamp(x).strftime("%Y-%m-%d") for x in dd.values]
 for date in date_list:
-	number = random.randint(0,5)
-	os.system("echo {} commit {} times >> README.md".format(str(number)))
+	p = random.random()
+	if p < 0.3:
+		continue
+	number = random.randint(0,10)
+	os.system("echo {} commit {} times >> README.md".format(date, str(number)))
 	hours = sorted([random.randint(8,23) for _ in range(number)])
 	for hour in hours:
 		minu, sec = random.randint(0,60), random.randint(0,60)
